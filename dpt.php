@@ -147,6 +147,7 @@ if (isset($_POST["cari"])) {
             </div>
         </form>
         <br>
+        <p><small>Halaman : <?= $halamanaktif; ?> dari <?= $jumlahhalaman; ?> halaman</small></p>
         <div id="datadpt">
             <table class="table table-hover">
                 <thead>
