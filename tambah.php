@@ -72,7 +72,7 @@ if (isset($_POST["submit"])) {
         <br>
         <br><br><br>
         <footer class="position-relative">
-            <p class="position-absolute bottom-0 end-0">Developed by <a class="text-danger" href="https://tarigan.web.id" target="_blank">Tarigan Hosting</a><i><small> - Versi 1.0.0</small></i></p>
+            <p class="position-absolute bottom-0 end-0">Developed by <a class="text-danger" href="https://tarigan.web.id" target="_blank">Tarigan Hosting</a><i><small> - <?= $versi; ?></small></i></p>
         </footer>
     </div>
     <script src="bootstrap-5.3.3-dist\js\bootstrap.bundle.js"></script>

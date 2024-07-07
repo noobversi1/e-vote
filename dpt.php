@@ -24,7 +24,7 @@ if (isset($_POST["hapus"])) {
 }
 
 //pagination
-$jumlahdataperhalaman = 10;
+$jumlahdataperhalaman = 20;
 $jumlahdata = count(query("SELECT * FROM dpt"));
 $jumlahhalaman = ceil($jumlahdata / $jumlahdataperhalaman);
 $halamanaktif = (isset($_GET["halaman"])) ? $_GET["halaman"] : 1;
@@ -80,10 +80,11 @@ if (isset($_POST["cari"])) {
                 <?php endif; ?>
                 <?php for ($i = 1; $i <= $jumlahhalaman; $i++) : ?>
                     <?php if ($i == $halamanaktif) : ?>
-                        <li class="page-item"><a class="page-link" href="?halaman=<?= $i; ?>"><?= $i; ?></a>
+                        <li class="page-item active">
+                            <a class="page-link" href="?halaman=<?= $i; ?>"><?= $i; ?></a>
                         </li>
                     <?php else : ?>
-                        <li class="page-item active" aria-current="page">
+                        <li class="page-item" aria-current="page">
                             <a class="page-link" href="?halaman=<?= $i; ?>"><?= $i; ?></a>
                         </li>
                     <?php endif; ?>
@@ -144,10 +145,11 @@ if (isset($_POST["cari"])) {
                 <?php endif; ?>
                 <?php for ($i = 1; $i <= $jumlahhalaman; $i++) : ?>
                     <?php if ($i == $halamanaktif) : ?>
-                        <li class="page-item"><a class="page-link" href="?halaman=<?= $i; ?>"><?= $i; ?></a>
+                        <li class="page-item active">
+                            <a class="page-link" href="?halaman=<?= $i; ?>"><?= $i; ?></a>
                         </li>
                     <?php else : ?>
-                        <li class="page-item active" aria-current="page">
+                        <li class="page-item" aria-current="page">
                             <a class="page-link" href="?halaman=<?= $i; ?>"><?= $i; ?></a>
                         </li>
                     <?php endif; ?>
@@ -167,7 +169,7 @@ if (isset($_POST["cari"])) {
         </form>
         <br><br><br>
         <footer class="position-relative">
-            <p class="position-absolute bottom-0 end-0">Developed by <a class="text-danger" href="https://tarigan.web.id" target="_blank">Tarigan Hosting</a><i><small> - Versi 1.0.0</small></i></p>
+            <p class="position-absolute bottom-0 end-0">Developed by <a class="text-danger" href="https://tarigan.web.id" target="_blank">Tarigan Hosting</a><i><small> - <?= $versi; ?></small></i></p>
         </footer>
     </div>
     <script src="bootstrap-5.3.3-dist\js\bootstrap.bundle.js"></script>
