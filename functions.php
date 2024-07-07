@@ -1,6 +1,7 @@
 <?php
+require 'database.php';
 // koneksi ke database
-$conn = mysqli_connect("localhost", "root", "", "evote");
+$conn = mysqli_connect("$koneksi", "$user", "$pass", "$db");
 
 //Pengaturan
 $namaapp = "e-Vote";
