@@ -7,7 +7,7 @@ $namaapp = "e-Vote";
 $instansi = "Tarigan Hosting";
 $lokasi = "Indonesia";
 $logo = "logo.png";
-$versi = "Versi 1.0.1";
+$versi = "Versi 1.0.2";
 
 function query($query)
 {
