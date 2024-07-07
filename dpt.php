@@ -181,7 +181,7 @@ if (isset($_POST["cari"])) {
         <br>
         <nav aria-label="...">
             <ul class="pagination">
-                <?php if ($jumlahhalaman > 5) : ?>
+                <?php if ($jumlahhalaman > 10) : ?>
                     <?php if ($halamanaktif > 1) : ?>
                         <li class="page-item">
                             <a href="?halaman=1" class="page-link"> First </a>
@@ -190,7 +190,7 @@ if (isset($_POST["cari"])) {
                             <a href="?halaman=<?= $halamanaktif - 1; ?>" class="page-link"> &laquo; </a>
                         </li>
                     <?php endif; ?>
-                    <?php for ($i = 1; $i <= 2; $i++) : ?>
+                    <?php for ($i = 1; $i <= 3; $i++) : ?>
                         <?php if ($i == $halamanaktif) : ?>
                             <li class="page-item active">
                                 <a class="page-link" href="?halaman=<?= $i; ?>"><?= $i; ?></a>
@@ -201,16 +201,7 @@ if (isset($_POST["cari"])) {
                             </li>
                         <?php endif; ?>
                     <?php endfor; ?>
-                    <li class="page-item">
-                        <a href="#" class="page-link disabled"> ... </a>
-                    </li>
-                    <li class="page-item">
-                        <a href="#" class="page-link disabled"> <?= $halamanaktif; ?> </a>
-                    </li>
-                    <li class="page-item">
-                        <a href="#" class="page-link disabled"> ... </a>
-                    </li>
-                    <?php for ($i = $jumlahhalaman - 1; $i <= $jumlahhalaman; $i++) : ?>
+                    <?php for ($i = $jumlahhalaman - 2; $i <= $jumlahhalaman; $i++) : ?>
                         <?php if ($i == $halamanaktif) : ?>
                             <li class="page-item active">
                                 <a class="page-link" href="?halaman=<?= $i; ?>"><?= $i; ?></a>
