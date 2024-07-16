@@ -52,7 +52,7 @@ function registrasi($data)
     $password = password_hash($password, PASSWORD_DEFAULT);
 
     // tambahkan userbaru ke database
-    mysqli_query($conn, "INSERT INTO user VALUE('', '$nama', '$username', '$password')");
+    mysqli_query($conn, "INSERT INTO user (nama, username, password) VALUE ('$nama', '$username', '$password')");
     return mysqli_affected_rows($conn);
 }
 
@@ -73,8 +73,8 @@ function tambah($data)
         return false;
     }
 
-    $query = "INSERT INTO kandidat
-    VALUES ('', '$nisn', '$nama', '$kelas', '$visi', '$misi', '$tujuan', '$gambar')";
+    $query = "INSERT INTO kandidat (nisn, nama, kelas, visi, misi, tujuan, gambar)
+    VALUES ('$nisn', '$nama', '$kelas', '$visi', '$misi', '$tujuan', '$gambar')";
 
     mysqli_query($conn, $query);
 
@@ -89,7 +89,7 @@ function tambahdpt($data)
 
     for ($i = 0; $i < $jlhdpt; $i++) {
         $token = uniqid();
-        $query = "INSERT INTO dpt VALUES ('', '$token', 0)";
+        $query = "INSERT INTO dpt (token, stat) VALUES ('$token', 0)";
         mysqli_query($conn, $query);
     }
 
@@ -210,8 +210,8 @@ function plhcalon($id)
     //     return false;
     // }
 
-    $query = "INSERT INTO pilihan
-    VALUES ('', '$nisn', '$nama', '$kelas')";
+    $query = "INSERT INTO pilihan (nisn, nama, kelas)
+    VALUES ('$nisn', '$nama', '$kelas')";
 
     mysqli_query($conn, $query);
     return mysqli_affected_rows($conn);
