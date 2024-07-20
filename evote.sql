@@ -1,145 +1,67 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Jul 07, 2024 at 05:11 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Versi server:                 8.0.30 - MySQL Community Server - GPL
+-- OS Server:                    Win64
+-- HeidiSQL Versi:               12.1.0.6537
+-- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
---
--- Database: `evote`
---
+-- membuang struktur untuk table votingoop.admin
+CREATE TABLE IF NOT EXISTS `admin` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 
--- --------------------------------------------------------
+-- Pengeluaran data tidak dipilih.
 
---
--- Table structure for table `dpt`
---
-
-CREATE TABLE `dpt` (
-  `id` int(11) NOT NULL,
-  `token` char(13) NOT NULL,
-  `stat` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `kandidat`
---
-
-CREATE TABLE `kandidat` (
-  `id` int(11) NOT NULL,
-  `nisn` char(10) NOT NULL,
+-- membuang struktur untuk table votingoop.calon
+CREATE TABLE IF NOT EXISTS `calon` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `nama` varchar(100) NOT NULL,
+  `nisn` varchar(20) NOT NULL,
   `kelas` varchar(10) NOT NULL,
+  `jenis_kelamin` enum('L','P') NOT NULL,
+  `tanggal_lahir` date NOT NULL,
   `visi` text NOT NULL,
   `misi` text NOT NULL,
-  `tujuan` text NOT NULL,
-  `gambar` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `foto` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
+-- Pengeluaran data tidak dipilih.
 
---
--- Table structure for table `pilihan`
---
+-- membuang struktur untuk table votingoop.token
+CREATE TABLE IF NOT EXISTS `token` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `token` varchar(255) NOT NULL,
+  `status` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=157 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE `pilihan` (
-  `id` int(11) NOT NULL,
-  `nisn` char(10) NOT NULL,
-  `nama` varchar(100) NOT NULL,
-  `kelas` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+-- Pengeluaran data tidak dipilih.
 
--- --------------------------------------------------------
+-- membuang struktur untuk table votingoop.vote
+CREATE TABLE IF NOT EXISTS `vote` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `token_id` int NOT NULL,
+  `calon_id` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Table structure for table `user`
---
+-- Pengeluaran data tidak dipilih.
 
-CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
-  `nama` varchar(100) NOT NULL,
-  `username` varchar(32) NOT NULL,
-  `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`id`, `nama`, `username`, `password`) VALUES
-(3, 'ADMIN', 'admin', '$2y$10$3pUQracWXvI8BUY.KxrjpOiv4hN2017DG6TiHY/jMW2QmJlCUeb3y');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `dpt`
---
-ALTER TABLE `dpt`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `kandidat`
---
-ALTER TABLE `kandidat`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `pilihan`
---
-ALTER TABLE `pilihan`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `dpt`
---
-ALTER TABLE `dpt`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=272;
-
---
--- AUTO_INCREMENT for table `kandidat`
---
-ALTER TABLE `kandidat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `pilihan`
---
-ALTER TABLE `pilihan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-COMMIT;
-
+/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
