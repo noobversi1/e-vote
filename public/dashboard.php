@@ -46,7 +46,7 @@ foreach ($vote_result as $result) {
 $search = isset($_GET['search']) ? $_GET['search'] : '';
 
 // Mengatur jumlah token per halaman
-$limit = 10;
+$limit = 15;
 
 // Mengambil nomor halaman dari URL, jika tidak ada default halaman 1
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
@@ -72,6 +72,23 @@ $total_tokens = $stmt->fetchColumn();
 
 // Menghitung total halaman
 $total_pages = ceil($total_tokens / $limit);
+
+// Menentukan jumlah halaman yang akan ditampilkan di pagination
+$max_links = 7; // Jumlah link halaman yang akan ditampilkan
+$start = max(1, $page - floor($max_links / 2));
+$end = min($total_pages, $page + floor($max_links / 2));
+
+// Jika halaman awal lebih kecil dari 1, atur start ke 1
+if ($start < 1) {
+    $start = 1;
+    $end = min($total_pages, $max_links);
+}
+
+// Jika halaman akhir lebih besar dari total halaman, atur end ke total_pages
+if ($end > $total_pages) {
+    $end = $total_pages;
+    $start = max(1, $total_pages - $max_links + 1);
+}
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -104,7 +121,7 @@ $total_pages = ceil($total_tokens / $limit);
 
         <h2 class="text-center mb-3 my-3">Daftar Calon <?= $kontes; ?></h2>
 
-        <div class="justify-content-center row row-cols-1 row-cols-md-4 g-4">
+        <div class="justify-content-center row row-cols-1 row-cols-md-3 g-3">
             <?php foreach ($calon_list as $calon) : ?>
                 <div class="col">
                     <div class="card h-100 text-bg-info text-center border-info mb-3" style="width: 18rem;">
@@ -175,15 +192,21 @@ $total_pages = ceil($total_tokens / $limit);
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
                     <?php if ($page > 1) : ?>
-                        <li class="page-item"><a class="page-link" href="?page=<?= $page - 1; ?>">Previous</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page=<?= $page - 1; ?>">Previous</a>
+                        </li>
                     <?php endif; ?>
 
-                    <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
-                        <li class="page-item"><a class="page-link" href="?page=<?= $i; ?>"><?= $i; ?></a></li>
+                    <?php for ($i = $start; $i <= $end; $i++) : ?>
+                        <li class="page-item <?= $i == $page ? 'active' : ''; ?>">
+                            <a class="page-link" href="?page=<?= $i; ?>"><?= $i; ?></a>
+                        </li>
                     <?php endfor; ?>
 
                     <?php if ($page < $total_pages) : ?>
-                        <li class="page-item"><a class="page-link" href="?page=<?= $page + 1; ?>">Next</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page=<?= $page + 1; ?>">Next</a>
+                        </li>
                     <?php endif; ?>
                 </ul>
             </nav>
