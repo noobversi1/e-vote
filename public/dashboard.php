@@ -121,10 +121,10 @@ if ($end > $total_pages) {
 
         <h2 class="text-center mb-3 my-3">Daftar Calon <?= $kontes; ?></h2>
 
-        <div class="justify-content-center row row-cols-1 row-cols-md-3 g-3">
+        <div class="justify-content-center row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
             <?php foreach ($calon_list as $calon) : ?>
                 <div class="col">
-                    <div class="card h-100 text-bg-info text-center border-info mb-3" style="width: 18rem;">
+                    <div class="card h-100 text-bg-info text-center border-info mb-3">
                         <img src="<?= $calon['foto']; ?>" class="card-img-top" alt="foto">
                         <div class="card-body">
                             <h5 class="card-title"><?= $calon['nama']; ?></h5>
