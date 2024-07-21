@@ -1,0 +1,45 @@
+# Mengaktifkan URL Rewrite Engine
+RewriteEngine On
+
+# Mengarahkan HTTP ke HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Menghapus "www" dari URL
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [L,R=301]
+
+# Blokir direktori tertentu
+Options -Indexes
+
+# Amankan file .htaccess
+<Files .htaccess>
+Order Allow,Deny
+Deny from all
+</Files>
+
+# Menggunakan URL yang bersih
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+
+# Melindungi akses ke direktori uploads
+<Directory /uploads>
+    Options -Indexes
+    AllowOverride None
+    <FilesMatch "\.(php|php3|php4|php5|phtml|phps|inc|bak|ini)$">
+        Order Deny,Allow
+        Deny from all
+    </FilesMatch>
+</Directory>
+
+# Mengatur kebijakan cache untuk gambar, CSS dan JS
+<FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$">
+    Header set Cache-Control "max-age=2592000, public"
+</FilesMatch>
+
+# Melindungi file config
+<FilesMatch "^(config\.php|database\.php)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>

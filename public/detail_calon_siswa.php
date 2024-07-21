@@ -24,14 +24,21 @@ $calon->getDetail();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Calon <?= $kontes; ?></title>
-    <link rel="stylesheet" href="..\bootstrap\css\bootstrap.css">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
 </head>
 
 <body>
     <div class="container bg-body-tertiary">
 
-        <?php include '../assets/header.php' ?>
+        <nav class="navbar sticky-top navbar-expand-lg bg-primary border-bottom border-body" data-bs-theme="dark">
+            <div class=" container-fluid">
+                <a class="navbar-brand""><?= $appname; ?></a>
+                <span class=" navbar-text">
+                    <a class="nav-link" href="logout_token.php">Batal Memilih</a>
+                    </span>
+            </div>
+        </nav>
 
         <h2 class="text-center mb-3 my-3">Detail Calon <?= $kontes; ?></h2>
 
@@ -60,7 +67,7 @@ $calon->getDetail();
         <?php include '../assets/footer.php' ?>
     </div>
 
-    <script src="..\bootstrap\js\bootstrap.bundle.js"></script>
+    <script src="../bootstrap/js/bootstrap.bundle.js"></script>
 </body>
 
 </html>

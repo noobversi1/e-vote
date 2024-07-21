@@ -9,7 +9,7 @@ include_once '../config/helpers.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Masukkan Token</title>
-    <link rel="stylesheet" href="..\bootstrap\css\bootstrap.css">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
 </head>
 
@@ -42,7 +42,7 @@ include_once '../config/helpers.php';
 
     <?php include '../assets/footer.php' ?>
 
-    <script src="..\bootstrap\js\bootstrap.bundle.js"></script>
+    <script src="../bootstrap/js/bootstrap.bundle.js"></script>
 </body>
 
 </html>
