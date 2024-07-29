@@ -1,4 +1,4 @@
 <?php
-$appname = "e-Vote";
+$appname = "Online Election";
 $instansi = "Tarigan Hosting";
 $kontes = "Ketua OSIM";

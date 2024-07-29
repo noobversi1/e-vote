@@ -18,10 +18,10 @@ include_once '../config/helpers.php';
 
         <nav class="navbar sticky-top navbar-expand-lg bg-primary border-bottom border-body" data-bs-theme="dark">
             <div class=" container-fluid">
-                <a class="navbar-brand""><?= $appname; ?></a>
+                <a class="navbar-brand"><?= $appname; ?></a>
                 <span class=" navbar-text">
                     <a class="nav-link" href="index.php">Login Voter</a>
-                    </span>
+                </span>
         </nav>
 
         <img class="my-4 mb-4 mx-auto d-block" width="200" src="../assets/logo.png">
